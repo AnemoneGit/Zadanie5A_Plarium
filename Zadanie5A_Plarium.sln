@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31702.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zadanie5_Plarium", "Zadanie5_Plarium\Zadanie5_Plarium.csproj", "{22EE6591-584A-4FD5-9ED6-36CF9569F383}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zadanie5B_Plarium", "Zadanie5B_Plarium\Zadanie5B_Plarium.csproj", "{51B779D9-31AA-4FD9-9882-FE8300AA326F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{22EE6591-584A-4FD5-9ED6-36CF9569F383}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22EE6591-584A-4FD5-9ED6-36CF9569F383}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22EE6591-584A-4FD5-9ED6-36CF9569F383}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22EE6591-584A-4FD5-9ED6-36CF9569F383}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51B779D9-31AA-4FD9-9882-FE8300AA326F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51B779D9-31AA-4FD9-9882-FE8300AA326F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51B779D9-31AA-4FD9-9882-FE8300AA326F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51B779D9-31AA-4FD9-9882-FE8300AA326F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0C5261A3-768A-4100-BE94-D12AA00A5184}
+	EndGlobalSection
+EndGlobal
