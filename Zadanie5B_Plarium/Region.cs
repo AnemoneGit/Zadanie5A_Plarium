@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Zadanie5B_Plarium
 {
-    class Region
+    abstract class Region
     {
         public string Nazva;
         public int Plochad;
@@ -19,6 +19,42 @@ namespace Zadanie5B_Plarium
             people = person;
 
         }
+        public abstract string GetInfo();
+ 
+    }
 
+    class Oblast : Region
+    {
+        public Oblast(string Name, int plochad, People person) : base(Name, plochad, person)
+        {
+        }
+        public override string GetInfo()
+        {
+            return $"В областе {Nazva} ";
+        }
+    }
+
+    class Country : Region
+    {
+        public Country(string Name, int plochad, People person) : base(Name, plochad, person)
+        {
+        }
+
+        public override string GetInfo()
+        {
+            return $"В стране {Nazva} ";
+        }
+    }
+
+    class City : Region
+    {
+        public City(string Name, int plochad, People person) : base(Name, plochad, person)
+        {
+        }
+
+        public override string GetInfo()
+        {
+            return $"В городе {Nazva} ";
+        }
     }
 }

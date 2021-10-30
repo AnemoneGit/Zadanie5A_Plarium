@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,13 +7,14 @@ using System.Threading.Tasks;
 
 namespace Zadanie5B_Plarium
 {
-    class Pogoda
+     class Pogoda
     {
 
         public Region reg;
         public DateTime date;
         public decimal temp;
         public string osad;
+        public Pogoda[] pogodas;
 
         public Pogoda(Region region, DateTime Date, decimal T, string Osad)
         {
@@ -21,47 +23,62 @@ namespace Zadanie5B_Plarium
             temp = T;
             osad = Osad;
         }
-
-        public void GetPogoda(List<Pogoda> vezers, Region region)
+        public IEnumerator GetEnumerator()
+        {
+            for (int i = 0; i < pogodas.Length; i++)
+            {
+                yield return pogodas[i];
+            }
+        }
+        public void Add(Pogoda pogoda)
+        {
+            pogodas = pogodas.Concat(new Pogoda[] { pogoda }).ToArray();
+        }
+        public Pogoda()
+        {
+            pogodas = new Pogoda[] { };
+          
+        }
+        public void GetPogoda(Pogoda vezers, Region region)
         {
             foreach (Pogoda pogoda in vezers)
                 if (pogoda.reg.Nazva == region.Nazva)
                 {
-                    Console.WriteLine($"В регионе {pogoda.reg.Nazva} {pogoda.date} числа, температура {pogoda.temp + "°C"} , осадки:{pogoda.osad}");
+                    Console.WriteLine($"{pogoda.reg.GetInfo()} {pogoda.date} числа, температура {pogoda.temp + "°C"} , осадки:{pogoda.osad}");
                 }
 
         }
 
-        public void GetData(List<Pogoda> vezers, Region region, string osadki, decimal zTemp)
+        public void GetData(Pogoda vezers, Region region, string osadki, decimal zTemp)
         {
             foreach (Pogoda pogoda in vezers)
                 if (pogoda.reg.Nazva == region.Nazva && pogoda.osad == osadki && zTemp > pogoda.temp)
-                    Console.WriteLine($" {pogoda.date} числа в регионе {pogoda.reg.Nazva}, температура {pogoda.temp + "°C"} была меньше заданной {zTemp + "°C"}, и были заданные осадки:{pogoda.osad}");
+                    Console.WriteLine($" {pogoda.date} числа {pogoda.reg.GetInfo()}, температура {pogoda.temp + "°C"} была меньше заданной {zTemp + "°C"}, и были заданные осадки:{pogoda.osad}");
         }
 
-        public void GetPogoda(List<Pogoda> vezers, string Lang)
+        public void GetPogoda(Pogoda vezers, string Lang)
         {
 
             foreach (Pogoda pogoda in vezers)
             {
                 if (Lang == pogoda.reg.people.Langue && pogoda.date.AddDays(7) >= DateTime.Today)
                 {
-                    Console.WriteLine($"В регионе {pogoda.reg.Nazva} люди говорят на языке {Lang} {pogoda.date} числа, температура {pogoda.temp + "°C"}, осадки:{pogoda.osad}");
+                    Console.WriteLine($"{pogoda.reg.GetInfo()} люди говорят на языке {Lang} {pogoda.date} числа, температура {pogoda.temp + "°C"}, осадки:{pogoda.osad}");
                 }
             }
         }
 
-        public void GetTemp(List<Pogoda> vezers, int Zplochad, List<Region> regions)
+        public void GetTemp(Pogoda vezers, int Zplochad, Dictionary<int, Region> regions)
         {
             decimal srTemp = 0;
-            foreach (Region region in regions)
+            foreach (Region region in regions.Values)
             {
                 if (region.Plochad > Zplochad)
                     foreach (Pogoda pogoda in vezers)
                         if (pogoda.reg.Nazva == region.Nazva && pogoda.date.AddDays(7) >= DateTime.Today)
                             srTemp += pogoda.temp;
 
-                Console.WriteLine($"В регионе {region.Nazva} средняя температура {srTemp + "°C"}");
+                Console.WriteLine($"{region.GetInfo()} средняя температура {srTemp + "°C"}");
                 srTemp = 0;
             }
 
@@ -71,6 +88,9 @@ namespace Zadanie5B_Plarium
         {
             return $"Регион:\n{reg}\nДата:\n{date}\nТемпература: {temp + "°C"}\nОсодки: {osad}\n";
         }
+
+        
+
     }
 
 }
